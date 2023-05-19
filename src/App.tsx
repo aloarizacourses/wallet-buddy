@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <NavBar />
         </GridItem>
         <GridItem area="aside" bg="gray.300">
-          Aside
+          <SideBar />
         </GridItem>
         <GridItem area="main" bg="gray.100" height="calc(100vh - 30vh)">
           Main
