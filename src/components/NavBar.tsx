@@ -1,11 +1,17 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import logo from "../assets/walletBuddyLogo.png";
+import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
   return (
-    <HStack>
-      <Image src={logo} width={150} />
-      <Text>Wallet Buddy</Text>
+    <HStack justifyContent="space-between" padding="10px">
+      <Box>
+        <HStack>
+          <Image src={logo} width={150} />
+          <Text>Wallet Buddy</Text>
+        </HStack>
+      </Box>
+      <ColorModeSwitch />
     </HStack>
   );
 };
