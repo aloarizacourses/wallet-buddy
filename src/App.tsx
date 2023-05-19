@@ -1,17 +1,24 @@
+import { Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
-import logo from "./assets/walletBuddyLogo.png";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
-      <div>
-        <img src={logo} alt="React logo" />
-      </div>
-      <h1>
-        This page is just a personal project. No revenue is generated out of it.
-      </h1>
-
-      <p className="read-the-docs">Coming Soon!</p>
+      <Grid templateAreas={`"nav nav" "aside main" "footer footer"`}>
+        <GridItem area="nav" bg="coral">
+          <NavBar />
+        </GridItem>
+        <GridItem area="aside" bg="gold">
+          Aside
+        </GridItem>
+        <GridItem area="main" bg="dodgerblue">
+          Main
+        </GridItem>
+        <GridItem area="footer" bg="red">
+          Footer
+        </GridItem>
+      </Grid>
     </>
   );
 }
