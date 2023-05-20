@@ -1,7 +1,10 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, useColorModeValue } from "@chakra-ui/react";
 import "./App.css";
+
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
+import ExpenseManager from "./components/ExpenseManager";
 
 function App() {
   return (
@@ -13,11 +16,11 @@ function App() {
         <GridItem area="nav" bg="bg-surface" boxShadow="sm">
           <NavBar />
         </GridItem>
-        <GridItem area="aside" bg="gray.300">
-          Aside
+        <GridItem area="aside" bg={useColorModeValue("gray.50", "gray.900")}>
+          <SideBar />
         </GridItem>
-        <GridItem area="main" bg="gray.100" height="calc(100vh - 30vh)">
-          Main
+        <GridItem area="main" height="calc(100vh - 30vh)">
+          <ExpenseManager />
         </GridItem>
         <GridItem area="footer">
           <Footer />
