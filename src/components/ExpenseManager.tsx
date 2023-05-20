@@ -21,7 +21,7 @@ const expensesMock: ExpenseInterface[] = [
 ];
 
 const ExpenseManager = () => {
-  const [expenses, setExpenses] = useState(expensesMock);
+  const [expenses] = useState(expensesMock);
 
   const width = 20;
   return (
