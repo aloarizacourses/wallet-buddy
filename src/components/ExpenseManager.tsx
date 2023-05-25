@@ -1,11 +1,14 @@
 import {
+  Box,
   Button,
   FormControl,
   FormLabel,
   HStack,
   Input,
   Text,
+  VStack,
 } from "@chakra-ui/react";
+import { Formik, Field } from "formik";
 import { useState } from "react";
 
 interface ExpenseInterface {
@@ -21,30 +24,74 @@ const expensesMock: ExpenseInterface[] = [
 ];
 
 const ExpenseManager = () => {
-  const [expenses] = useState(expensesMock);
+  const [expenses, setExpenses] = useState(expensesMock);
 
-  const width = 20;
+  
   return (
     <>
-      <FormControl>
-        <HStack>
-          <Text padding="30px">Add expense here, : )</Text>
-          <Button colorScheme="telegram" type="submit">
-            Add
-          </Button>
-        </HStack>
+      <Box bg="gray.500" p={6}>
+        <Formik
+          initialValues={{
+            description: "",
+            andaQuantity: 0,
+            aloQuantity: 0,
+          }}
+          onSubmit={(values) => {
+            let greatest = -Infinity;
+            for (let x in expenses) {
+              if (expenses[x].index > greatest) {
+                greatest = expenses[x].index;
+              }
+            }
 
-        <HStack m={10}>
-          <HStack>
-            <FormLabel>Description</FormLabel>
-            <Input width={width} type="text" />
-            <FormLabel>Anda</FormLabel>
-            <Input width={width} type="number" />
-            <FormLabel>Alo</FormLabel>
-            <Input width={width} type="number" />
-          </HStack>
-        </HStack>
-      </FormControl>
+            setExpenses([
+              ...expenses,
+              {
+                index: greatest + 1,
+                description: values.description,
+                aloQuantity: values.aloQuantity,
+                andaQuantity: values.andaQuantity,
+              },
+            ]);
+          }}
+        >
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <VStack>
+                <FormControl>
+                  <FormLabel htmlFor="description">Description</FormLabel>
+                  <Field
+                    as={Input}
+                    id="description"
+                    name="description"
+                    type="text"
+                    variant="filled"
+                  />
+                  <FormLabel htmlFor="andaQuantity">Anda</FormLabel>
+                  <Field
+                    as={Input}
+                    id="andaQuantity"
+                    name="andaQuantity"
+                    type="number"
+                    variant="filled"
+                  />
+                  <FormLabel htmlFor="aloQuantity">Alo</FormLabel>
+                  <Field
+                    as={Input}
+                    id="aloQuantity"
+                    name="aloQuantity"
+                    type="number"
+                    variant="filled"
+                  />
+                </FormControl>
+                <Button type="submit" colorScheme="linkedin" p={4}>
+                  Add
+                </Button>
+              </VStack>
+            </form>
+          )}
+        </Formik>
+      </Box>
 
       {expenses.map((expense) => (
         <HStack key={expense.index}>
