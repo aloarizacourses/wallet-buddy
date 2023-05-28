@@ -10,6 +10,7 @@ export interface ExpenseInterface {
 interface QuantitiesStore {
   expenses: ExpenseInterface[];
   addExpense: (expense: ExpenseInterface) => void;
+  deleteExpense: (id: number) => void;
 }
 
 const useExpenses = create<QuantitiesStore>((set) => ({
@@ -36,6 +37,10 @@ const useExpenses = create<QuantitiesStore>((set) => ({
       ],
     }));
   },
+  deleteExpense: (id) =>
+    set((store) => ({
+      expenses: store.expenses.filter((expense) => expense.index !== id),
+    })),
 }));
 
 export default useExpenses;

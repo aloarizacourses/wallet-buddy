@@ -9,6 +9,7 @@ export function getSumOfAndaQuantities(expenses: ExpenseInterface[]): number {
 }
 
 export function getNextIndex(expenses: ExpenseInterface[]): number {
+  if (expenses.length === 0) return 1;
   const maxIndex = Math.max(...expenses.map((expense) => expense.index));
   return maxIndex + 1;
 }

@@ -13,7 +13,7 @@ import useExpenses from "./storeExpenses";
 import { getNextIndex } from "./storeExpensesService";
 
 const ExpenseManager = () => {
-  const { expenses, addExpense } = useExpenses();
+  const { expenses, addExpense, deleteExpense } = useExpenses();
 
   return (
     <>
@@ -81,7 +81,9 @@ const ExpenseManager = () => {
           <Text>{expense.andaQuantity}</Text>
           <Text>Alo</Text>
           <Text>{expense.aloQuantity}</Text>
-          {/* <Button bg="red">Delete</Button> */}
+          <Button bg="red" onClick={() => deleteExpense(expense.index)}>
+            Delete
+          </Button>
         </HStack>
       ))}
     </>
