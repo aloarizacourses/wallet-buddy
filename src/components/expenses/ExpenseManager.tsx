@@ -9,24 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
-import { useState } from "react";
-
-interface ExpenseInterface {
-  index: number;
-  description: string;
-  aloQuantity: number;
-  andaQuantity: number;
-}
-const expensesMock: ExpenseInterface[] = [
-  { index: 0, description: "Green Thai : )", aloQuantity: 3, andaQuantity: 5 },
-  { index: 1, description: "Music Bar", aloQuantity: 6, andaQuantity: 10 },
-  { index: 2, description: "Schawarma", aloQuantity: 9, andaQuantity: 15 },
-];
+import useExpenses from "./storeExpenses";
 
 const ExpenseManager = () => {
-  const [expenses, setExpenses] = useState(expensesMock);
+  const { expenses, addExpense } = useExpenses();
 
-  
   return (
     <>
       <Box bg="gray.500" p={6}>
@@ -37,22 +24,21 @@ const ExpenseManager = () => {
             aloQuantity: 0,
           }}
           onSubmit={(values) => {
-            let greatest = -Infinity;
-            for (let x in expenses) {
-              if (expenses[x].index > greatest) {
-                greatest = expenses[x].index;
-              }
-            }
+            addExpense({
+              index: 4,
+              description: values.description,
+              aloQuantity: values.aloQuantity,
+              andaQuantity: values.andaQuantity,
+            });
 
-            setExpenses([
-              ...expenses,
-              {
-                index: greatest + 1,
-                description: values.description,
-                aloQuantity: values.aloQuantity,
-                andaQuantity: values.andaQuantity,
-              },
-            ]);
+            // const newAloQuantity = expenses.reduce((acc, obj) => {
+            //   return acc + obj.aloQuantity;
+            // }, 0);
+            // const newAndaQuantity = expenses.reduce((acc, obj) => {
+            //   return acc + obj.andaQuantity;
+            // }, 0);
+            // console.log(newAloQuantity);
+            // console.log(newAndaQuantity);
           }}
         >
           {({ handleSubmit }) => (
@@ -103,6 +89,7 @@ const ExpenseManager = () => {
           <Text>{expense.andaQuantity}</Text>
           <Text>Alo</Text>
           <Text>{expense.aloQuantity}</Text>
+          {/* <Button bg="red">Delete</Button> */}
         </HStack>
       ))}
     </>

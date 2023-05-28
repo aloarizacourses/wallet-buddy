@@ -1,7 +1,7 @@
 import {
   ListItem,
-  UnorderedList,
   Text,
+  UnorderedList,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -10,10 +10,10 @@ const Users = () => {
   return (
     <UnorderedList padding="20px">
       <ListItem color={color}>
-        <Text>Anda</Text>
+        <Text>Anda: {0}</Text>
       </ListItem>
       <ListItem color={color}>
-        <Text>Alo</Text>
+        <Text>Alo: {0}</Text>
       </ListItem>
     </UnorderedList>
   );

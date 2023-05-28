@@ -4,7 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
-import ExpenseManager from "./components/ExpenseManager";
+import ExpenseManager from "./components/expenses/ExpenseManager";
 
 function App() {
   return (
