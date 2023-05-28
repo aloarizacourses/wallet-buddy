@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface ExpenseInterface {
+export interface ExpenseInterface {
   index: number;
   description: string;
   aloQuantity: number;
@@ -28,7 +28,7 @@ const useExpenses = create<QuantitiesStore>((set) => ({
       expenses: [
         ...store.expenses,
         {
-          index: 10,
+          index: expense.index,
           description: expense.description,
           aloQuantity: expense.aloQuantity,
           andaQuantity: expense.andaQuantity,

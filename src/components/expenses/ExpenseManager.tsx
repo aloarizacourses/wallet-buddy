@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import useExpenses from "./storeExpenses";
+import { getNextIndex } from "./storeExpensesService";
 
 const ExpenseManager = () => {
   const { expenses, addExpense } = useExpenses();
@@ -25,20 +26,11 @@ const ExpenseManager = () => {
           }}
           onSubmit={(values) => {
             addExpense({
-              index: 4,
+              index: getNextIndex(expenses),
               description: values.description,
               aloQuantity: values.aloQuantity,
               andaQuantity: values.andaQuantity,
             });
-
-            // const newAloQuantity = expenses.reduce((acc, obj) => {
-            //   return acc + obj.aloQuantity;
-            // }, 0);
-            // const newAndaQuantity = expenses.reduce((acc, obj) => {
-            //   return acc + obj.andaQuantity;
-            // }, 0);
-            // console.log(newAloQuantity);
-            // console.log(newAndaQuantity);
           }}
         >
           {({ handleSubmit }) => (
